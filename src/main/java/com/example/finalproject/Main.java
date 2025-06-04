@@ -49,6 +49,7 @@ public class Main {
         System.out.println(hash.find(7));
 
 
+
         System.out.println("============================");
 
         for (AVLTree<Integer> avlTree:hash.getArray()){
