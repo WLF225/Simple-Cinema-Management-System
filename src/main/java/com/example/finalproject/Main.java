@@ -52,9 +52,7 @@ public class Main {
 
         System.out.println("============================");
 
-        for (AVLTree<Integer> avlTree:hash.getArray()){
-            System.out.println(avlTree.levelTraverse());
-        }
+
 
     }
 }

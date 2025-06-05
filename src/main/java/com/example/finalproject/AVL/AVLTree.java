@@ -242,7 +242,7 @@ public class AVLTree<T extends Comparable<T>> {
         }else if (data.compareTo(node.getData()) > 0) {
             return find(data, node.getRight());
         }else {
-            return data;
+            return node.getData();
         }
    }
 

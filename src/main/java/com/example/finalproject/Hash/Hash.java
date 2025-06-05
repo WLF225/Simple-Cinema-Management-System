@@ -3,7 +3,11 @@ package com.example.finalproject.Hash;
 import com.example.finalproject.AVL.AVLTree;
 import com.example.finalproject.LinkList.LinkList;
 
-public class Hash<T extends Comparable<T>> {
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.function.Consumer;
+
+public class Hash<T extends Comparable<T>> implements Iterable<AVLTree<T>> {
 
     private AVLTree<T>[] array;
     private int itemNumber = 0;
@@ -35,16 +39,20 @@ public class Hash<T extends Comparable<T>> {
                 }
             }
         }
-        array[data.hashCode()%size].insert(data);
+        array[(int)(Math.abs(data.hashCode()))%size].insert(data);
         itemNumber++;
     }
 
     public T find(T data){
-        return array[data.hashCode()%size].find(data);
+        return array[(int)(Math.abs(data.hashCode()))%size].find(data);
     }
 
     public T delete(T data){
-        return array[data.hashCode()%size].delete(data);
+        T deleted = array[(int)(Math.abs(data.hashCode()))%size].delete(data);
+        if (deleted != null){
+            itemNumber--;
+        }
+        return deleted;
     }
 
     public int getNextPrime(int n) {
@@ -72,5 +80,18 @@ public class Hash<T extends Comparable<T>> {
         return true;
     }
 
+    public int length(){
+        return size;
+    }
 
+    public void clear(){
+        for (AVLTree<T> avlTree : array) {
+            avlTree.clear();
+        }
+    }
+
+    @Override
+    public Iterator<AVLTree<T>> iterator() {
+        return Arrays.stream(array).iterator();
+    }
 }
