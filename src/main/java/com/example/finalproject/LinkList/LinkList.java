@@ -1,6 +1,8 @@
 package com.example.finalproject.LinkList;
 
 import com.example.finalproject.Queue.NodeNotComp;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.Iterator;
 
@@ -13,6 +15,11 @@ public class LinkList<T> implements Iterable<T>{
         NodeNotComp<T> node = new NodeNotComp<>(data);
         node.setNext(head);
         head = node;
+    }
+
+    public void addToObservableList(ObservableList<T> list) {
+        for (T data: this)
+            list.add(data);
     }
 
     @Override

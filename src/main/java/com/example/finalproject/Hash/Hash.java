@@ -5,7 +5,7 @@ import com.example.finalproject.LinkList.LinkList;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.function.Consumer;
+
 
 public class Hash<T extends Comparable<T>> implements Iterable<AVLTree<T>> {
 

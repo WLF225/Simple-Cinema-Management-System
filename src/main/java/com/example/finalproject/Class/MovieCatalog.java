@@ -2,6 +2,8 @@ package com.example.finalproject.Class;
 
 import com.example.finalproject.AVL.AVLTree;
 import com.example.finalproject.Hash.Hash;
+import com.example.finalproject.LinkList.LinkList;
+import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.io.IOException;
@@ -66,6 +68,7 @@ public class MovieCatalog {
                 String description = scanner.nextLine().replace("Description:", "").trim();
                 String year = scanner.nextLine().replace("Year:", "").trim();
                 String rating = scanner.nextLine().replace("Rating:", "").trim();
+                scanner.nextLine();
                 addMovie(new Movie(title, description, Integer.parseInt(year), Double.parseDouble(rating)));
                 lineNumber += 5;
             }
@@ -83,7 +86,11 @@ public class MovieCatalog {
         hash.clear();
     }
 
-    public Hash<Movie> getHash() {
-        return hash;
+    public void addToObservableList(ObservableList<Movie> list){
+        for (AVLTree<Movie> tree : hash) {
+            LinkList<Movie> linkList = tree.toLinkList();
+            linkList.addToObservableList(list);
+        }
     }
+
 }
